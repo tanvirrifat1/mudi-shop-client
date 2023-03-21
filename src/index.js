@@ -8,6 +8,9 @@ import Home from './components/pages/Home';
 import Menu from './components/pages/Menu';
 import About from './components/pages/About';
 import Contact from './components/pages/Contact';
+import Login from './components/pages/Login';
+import NewProduct from './components/pages/NewProduct';
+import SignUp from './components/pages/SignUp';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +19,9 @@ const router = createBrowserRouter(
       <Route path='/menu' element={<Menu />} />
       <Route path='/about' element={<About />} />
       <Route path='/contact' element={<Contact />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/product' element={<NewProduct />} />
+      <Route path='/signUp' element={<SignUp />} />
     </Route>
   )
 )
@@ -25,7 +31,4 @@ root.render(
   <RouterProvider router={router}></RouterProvider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

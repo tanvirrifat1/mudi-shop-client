@@ -6,7 +6,7 @@ function App() {
   return (
     <div >
       <Header />
-      <main>
+      <main className=' bg-slate-100 min-h-[calc(100vh)]'>
         <Outlet />
       </main>
     </div>
