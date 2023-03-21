@@ -7,11 +7,16 @@ import { VscThreeBars } from "react-icons/vsc";
 
 export default function Header() {
     const [showMenu, setShowMenu] = useState(false)
-
     const handleMenu = () => {
         setShowMenu(prev => !prev)
     }
 
+    const menuItem = <>
+        <li className='font-semibold'><Link to="/">Home</Link></li>
+        <li className='font-semibold'><Link to="menu">Menu</Link></li>
+        <li className='font-semibold'><Link to="about">About</Link></li>
+        <li className='font-semibold'><Link to="contact">Contact</Link></li>
+    </>
 
     return (
         <div className="navbar shadow-lg">
@@ -21,10 +26,7 @@ export default function Header() {
                         <VscThreeBars className='h-7 w-7' />
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow  rounded-box w-52">
-                        <li className='font-semibold'><Link to="/">Home</Link></li>
-                        <li className='font-semibold'><Link to="menu">Menu</Link></li>
-                        <li className='font-semibold'><Link to="about">About</Link></li>
-                        <li className='font-semibold'><Link to="contact">Contact</Link></li>
+                        {menuItem}
                     </ul>
                 </div>
             </div>
