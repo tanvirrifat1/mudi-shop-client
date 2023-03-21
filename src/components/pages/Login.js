@@ -17,20 +17,26 @@ export default function Login() {
 
                 <form className="w-full py-3 flex flex-col" >
                     <label htmlFor="email">Email</label>
+                    {/* <input
+
+                        className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded "
+                        placeholder='email'
+
+                    /> */}
                     <input
                         type={"email"}
                         id="email"
                         name="email"
-                        className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded "
-                        placeholder='email'
-
+                        placeholder="email"
+                        className="input input-bordered"
                     />
+
                     <label htmlFor="email">Password</label>
                     <input
                         type={"password"}
                         id="password"
                         name="password"
-                        className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded "
+                        className="input input-bordered"
                         placeholder='*****'
 
                     />

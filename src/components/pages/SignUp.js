@@ -27,7 +27,7 @@ export default function SignUp() {
                         type={"text"}
                         id="firstName"
                         name="firstName"
-                        className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:border-purple-400"
+                        className="input input-bordered"
                         placeholder='firstName'
                     />
 
@@ -36,7 +36,7 @@ export default function SignUp() {
                         type={"text"}
                         id="lastName"
                         name="lastName"
-                        className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:border-purple-400"
+                        className="input input-bordered"
                         placeholder='lastName'
                     />
 
@@ -45,33 +45,28 @@ export default function SignUp() {
                         type={"email"}
                         id="email"
                         name="email"
-                        className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:border-purple-400"
+                        className="input input-bordered"
                         placeholder='email'
                     />
 
                     <label htmlFor="password">Password</label>
-                    <div className="flex px-2 py-1 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:border-purple-400" >
-                        <input
-                            placeholder='*****'
-                            id="password"
-                            name="password"
-                            className=" w-full bg-slate-200 border-none outline-none "
+                    <input
+                        placeholder='*****'
+                        id="password"
+                        name="password"
+                        className="input input-bordered"
+                    />
 
-                        />
 
-                    </div>
 
                     <label htmlFor="confirmpassword">Confirm Password</label>
-                    <div className="flex px-2 py-1 bg-slate-200 rounded mt-1 mb-2  focus-within:outline focus-within:border-purple-400" >
-                        <input
-                            placeholder='*****'
-                            id="confirmpassword"
-                            name="confirmPassword"
-                            className=" w-full bg-slate-200 border-none outline-none "
+                    <input
+                        placeholder='*****'
+                        id="confirmpassword"
+                        name="confirmPassword"
+                        className="input input-bordered"
+                    />
 
-                        />
-
-                    </div>
 
                     <div className='mt-4'>
                         <LoadingButton
