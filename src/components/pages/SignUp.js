@@ -8,13 +8,32 @@ import { BiHide, BiShow } from "react-icons/bi";
 
 export default function SignUp() {
     const [loading, setLoading] = useState(false)
-    const [showPass, setShowPass] = useState(false)
-    const [showPassword, setShowPassword] = useState(false)
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [data, setData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        image: ""
+    });
+    console.log(data);
     const handleShowPassword = () => {
-        setShowPassword(prev => !prev)
-    }
-    const handleShowPass = () => {
-        setShowPass(prev => !prev)
+        setShowPassword((preve) => !preve);
+    };
+    const handleShowConfirmPassword = () => {
+        setShowConfirmPassword((preve) => !preve);
+    };
+
+    const handleOnChange = (e) => {
+        const { name, value } = e.target;
+        setData((preve) => {
+            return {
+                ...preve,
+                [name]: value,
+            };
+        });
     }
 
     return (
@@ -40,6 +59,8 @@ export default function SignUp() {
                         name="firstName"
                         className="input input-bordered"
                         placeholder='firstName'
+                        value={data.firstName}
+                        onChange={handleOnChange}
                     />
 
                     <label htmlFor="lastName" >Last Name</label>
@@ -49,6 +70,8 @@ export default function SignUp() {
                         name="lastName"
                         className="input input-bordered"
                         placeholder='lastName'
+                        value={data.lastName}
+                        onChange={handleOnChange}
                     />
 
                     <label htmlFor="email">Email</label>
@@ -58,6 +81,8 @@ export default function SignUp() {
                         name="email"
                         className="input input-bordered"
                         placeholder='email'
+                        value={data.email}
+                        onChange={handleOnChange}
                     />
 
                     <label htmlFor="password">Password</label>
@@ -68,23 +93,30 @@ export default function SignUp() {
                             id="password"
                             name="password"
                             className="w-full border-none outline-none"
+                            value={data.password}
+                            onChange={handleOnChange}
                         />
                         <span onClick={handleShowPassword} className="flex text-xl justify-center items-center cursor-pointer">
                             {showPassword ? <BiShow /> : <BiHide />}
                         </span>
                     </div>
 
-                    <label htmlFor="password">Confirm Password</label>
+                    <label htmlFor="confirmedPassword">Confirm Password</label>
                     <div className="flex px-2 py-1 mt-1 mb-2 input input-bordered">
                         <input
-                            type={showPass ? "text" : 'password'}
-                            id="password"
-                            name="password"
-                            className=" w-full border-none outline-none"
+                            type={showConfirmPassword ? "text" : "password"}
+                            id="confirmedPassword"
+                            name="confirmPassword"
                             placeholder='*****'
+                            className="w-full border-none outline-none "
+                            value={data.confirmPassword}
+                            onChange={handleOnChange}
                         />
-                        <span onClick={handleShowPass} className="flex text-xl justify-center items-center cursor-pointer">
-                            {showPass ? <BiShow /> : <BiHide />}
+                        <span
+                            className="flex text-xl cursor-pointer"
+                            onClick={handleShowConfirmPassword}
+                        >
+                            {showConfirmPassword ? <BiShow /> : <BiHide />}
                         </span>
                     </div>
 

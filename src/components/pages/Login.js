@@ -17,12 +17,7 @@ export default function Login() {
 
                 <form className="w-full py-3 flex flex-col" >
                     <label htmlFor="email">Email</label>
-                    {/* <input
 
-                        className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded "
-                        placeholder='email'
-
-                    /> */}
                     <input
                         type={"email"}
                         id="email"
@@ -47,14 +42,14 @@ export default function Login() {
                             className='btn btn-accent mt-3 w-full'
                             value='Login'
                         >
-                            {loading ? <SmallSpinner /> : 'signUp'}
+                            {loading ? <SmallSpinner /> : 'Login'}
                         </LoadingButton>
                     </div>
                 </form>
                 <p className="text-left text-sm mt-2">
                     Don't  have account ?{" "}
                     <Link to={"/signup"} className="text-secondary underline">
-                        Sign Up
+                        signUp
                     </Link>
                 </p>
             </div>

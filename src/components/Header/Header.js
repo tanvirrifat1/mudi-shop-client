@@ -4,9 +4,16 @@ import logo from '../assest/headerImg.jpg'
 import { FaUser } from "react-icons/fa";
 import { HiShoppingCart } from "react-icons/hi";
 import { VscThreeBars } from "react-icons/vsc";
+import { CgClose } from "react-icons/cg";
 
 export default function Header() {
     const [showMenu, setShowMenu] = useState(false)
+    const [nav, setNen] = useState(true)
+
+    const handleNav = () => {
+        setNen(prev => !prev)
+    }
+
     const handleMenu = () => {
         setShowMenu(prev => !prev)
     }
@@ -19,20 +26,26 @@ export default function Header() {
     </>
 
     return (
-        <div className="navbar shadow-lg">
+        <div className="navbar bg-base-100 flex justify-between">
             <div className="navbar-start">
                 <div className="dropdown">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle">
-                        <VscThreeBars className='h-7 w-7' />
+                    <label onClick={handleNav} tabIndex={0} className="btn btn-ghost lg:hidden">
+                        {nav ? <VscThreeBars className='h-7 w-7' /> : <CgClose className='h-7 w-7' />}
                     </label>
-                    <ul tabIndex={0} className="menu bg-slate-900 text-white menu-compact dropdown-content mt-3 p-2 shadow  rounded-box w-52">
+                    <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {menuItem}
                     </ul>
                 </div>
+                <Link to="/" className="navbar-center">
+                    <img className='h-[80px] w-[85px]' src={logo} alt="" />
+                </Link>
             </div>
-            <Link to="/" className="navbar-center">
-                <img className='h-[80px] w-[85px]' src={logo} alt="" />
-            </Link>
+            <div className="navbar-center hidden lg:flex">
+                <ul className="menu menu-horizontal p-0">
+                    {menuItem}
+                </ul>
+            </div>
+
             <div className="navbar-end">
                 <div className='relative'>
                     <HiShoppingCart className='h-7 w-7 my-2 mr-6' />
