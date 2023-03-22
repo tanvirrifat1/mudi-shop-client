@@ -1,14 +1,11 @@
-import { Outlet } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header/Header';
+import { router } from './components/Router/Router';
 
 function App() {
   return (
-    <div >
-      <Header />
-      <main className=' bg-slate-100 min-h-[calc(100vh)]'>
-        <Outlet />
-      </main>
+    <div className=' bg-slate-100 min-h-[calc(100vh)]'>
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }

@@ -25,7 +25,7 @@ export default function Header() {
                     <label tabIndex={0} className="btn btn-ghost btn-circle">
                         <VscThreeBars className='h-7 w-7' />
                     </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow  rounded-box w-52">
+                    <ul tabIndex={0} className="menu bg-slate-900 text-white menu-compact dropdown-content mt-3 p-2 shadow  rounded-box w-52">
                         {menuItem}
                     </ul>
                 </div>

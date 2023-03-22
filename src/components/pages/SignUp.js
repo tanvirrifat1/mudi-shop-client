@@ -3,9 +3,20 @@ import { Link } from 'react-router-dom'
 import signUpLogo from '../assest/login-animation.gif'
 import LoadingButton from '../Loding/LodingButton'
 import SmallSpinner from '../Loding/SmallSpinner'
+import { BiHide, BiShow } from "react-icons/bi";
+
 
 export default function SignUp() {
     const [loading, setLoading] = useState(false)
+    const [showPass, setShowPass] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
+    const handleShowPassword = () => {
+        setShowPassword(prev => !prev)
+    }
+    const handleShowPass = () => {
+        setShowPass(prev => !prev)
+    }
+
     return (
         <div className="p-3 md:p-4">
             <div className="w-full max-w-sm bg-white m-auto flex  flex-col p-4">
@@ -50,23 +61,32 @@ export default function SignUp() {
                     />
 
                     <label htmlFor="password">Password</label>
-                    <input
-                        placeholder='*****'
-                        id="password"
-                        name="password"
-                        className="input input-bordered"
-                    />
+                    <div className="flex px-2 py-1 mt-1 mb-2 input input-bordered">
+                        <input
+                            type={showPassword ? "text" : 'password'}
+                            placeholder='*****'
+                            id="password"
+                            name="password"
+                            className="w-full border-none outline-none"
+                        />
+                        <span onClick={handleShowPassword} className="flex text-xl justify-center items-center cursor-pointer">
+                            {showPassword ? <BiShow /> : <BiHide />}
+                        </span>
+                    </div>
 
-
-
-                    <label htmlFor="confirmpassword">Confirm Password</label>
-                    <input
-                        placeholder='*****'
-                        id="confirmpassword"
-                        name="confirmPassword"
-                        className="input input-bordered"
-                    />
-
+                    <label htmlFor="password">Confirm Password</label>
+                    <div className="flex px-2 py-1 mt-1 mb-2 input input-bordered">
+                        <input
+                            type={showPass ? "text" : 'password'}
+                            id="password"
+                            name="password"
+                            className=" w-full border-none outline-none"
+                            placeholder='*****'
+                        />
+                        <span onClick={handleShowPass} className="flex text-xl justify-center items-center cursor-pointer">
+                            {showPass ? <BiShow /> : <BiHide />}
+                        </span>
+                    </div>
 
                     <div className='mt-4'>
                         <LoadingButton
