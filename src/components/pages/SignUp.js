@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import signUpLogo from '../assest/login-animation.gif'
 import LoadingButton from '../Loding/LodingButton'
 import SmallSpinner from '../Loding/SmallSpinner'
 import { BiHide, BiShow } from "react-icons/bi";
+import { toast } from 'react-toastify'
+import ImageToBase64 from '../utility/ImageToBase64'
 
 
 export default function SignUp() {
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const navigate = useNavigate()
     const [data, setData] = useState({
         firstName: "",
         lastName: "",
@@ -36,22 +39,56 @@ export default function SignUp() {
         });
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setLoading(true)
+        const { firstName, email, password, confirmPassword } = data
+        if (firstName && email && password && confirmPassword) {
+            if (password === confirmPassword) {
+                toast.success('successful', { autoClose: 500 })
+                navigate('/login')
+                setLoading(false)
+            } else {
+                toast.error('Password are not equal', { autoClose: 500 })
+            }
+        }
+        else {
+            toast.warning('please enter required field', { autoClose: 1000 })
+        }
+    }
+
+    const handleImageUpload = async (e) => {
+        const data = await ImageToBase64(e.target.files[0])
+        console.log(data);
+
+        setData((prev) => {
+            return {
+                ...prev,
+                image: data
+            }
+        })
+    }
+
     return (
-        <div className="p-3 md:p-4">
+        <div className="p-3 md:p-4" >
             <div className="w-full max-w-sm bg-white m-auto flex  flex-col p-4">
                 <h1 className='text-center text-2xl font-bold'>Sign up</h1>
-                <div className="w-20 h-20 overflow-hidden rounded-full drop-shadow-md shadow-md m-auto relative ">
-                    <img src={signUpLogo} className="w-full h-full" alt='' />
+                <form
+                    onSubmit={handleSubmit}
+                    className="w-full py-3 flex flex-col" >
+                    <div className="w-20 h-20 overflow-hidden rounded-full drop-shadow-md shadow-md m-auto relative ">
 
-                    <label htmlFor="profileImage">
-                        <div className="absolute bottom-0 h-1/3  bg-slate-500 bg-opacity-50 w-full text-center cursor-pointer">
-                            <p className="text-sm p-1 text-white">Upload</p>
-                        </div>
-                        <input type={"file"} id="profileImage" accept="image/*" className="hidden" />
-                    </label>
-                </div>
+                        <img src={data.image ? data.image : signUpLogo} className="w-full h-full" alt='' />
 
-                <form className="w-full py-3 flex flex-col" >
+                        <label htmlFor="profileImage">
+                            <div className="absolute bottom-0 h-1/3  bg-slate-500 bg-opacity-50 w-full text-center cursor-pointer">
+                                <p className="text-sm p-1 text-white">Upload</p>
+                            </div>
+                            <input onChange={handleImageUpload} type={"file"} id="profileImage" accept="image/*" className="hidden" />
+
+                        </label>
+                    </div>
+
                     <label htmlFor="firstName" >First Name</label>
                     <input
                         type={"text"}
@@ -61,6 +98,7 @@ export default function SignUp() {
                         placeholder='firstName'
                         value={data.firstName}
                         onChange={handleOnChange}
+                        required
                     />
 
                     <label htmlFor="lastName" >Last Name</label>
@@ -72,6 +110,7 @@ export default function SignUp() {
                         placeholder='lastName'
                         value={data.lastName}
                         onChange={handleOnChange}
+                        required
                     />
 
                     <label htmlFor="email">Email</label>
@@ -83,6 +122,7 @@ export default function SignUp() {
                         placeholder='email'
                         value={data.email}
                         onChange={handleOnChange}
+                        required
                     />
 
                     <label htmlFor="password">Password</label>
@@ -95,6 +135,7 @@ export default function SignUp() {
                             className="w-full border-none outline-none"
                             value={data.password}
                             onChange={handleOnChange}
+                            required
                         />
                         <span onClick={handleShowPassword} className="flex text-xl justify-center items-center cursor-pointer">
                             {showPassword ? <BiShow /> : <BiHide />}
@@ -111,6 +152,7 @@ export default function SignUp() {
                             className="w-full border-none outline-none "
                             value={data.confirmPassword}
                             onChange={handleOnChange}
+                            required
                         />
                         <span
                             className="flex text-xl cursor-pointer"
@@ -124,7 +166,7 @@ export default function SignUp() {
                         <LoadingButton
                             type="submit"
                             className='btn btn-accent mt-3 w-full'
-                            value='Login'
+                            value='signup'
                         >
                             {loading ? <SmallSpinner /> : 'signUp'}
                         </LoadingButton>

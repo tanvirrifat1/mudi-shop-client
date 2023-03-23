@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 // import Home from './components/pages/Home';
 // import Menu from './components/pages/Menu';
@@ -30,6 +33,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
+    <ToastContainer
+      position="top-center"
+      theme="dark"
+    />
   </React.StrictMode>
 );
 
