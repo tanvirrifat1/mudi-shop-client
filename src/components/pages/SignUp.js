@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { json, Link, useNavigate } from 'react-router-dom'
 import signUpLogo from '../assest/login-animation.gif'
 import LoadingButton from '../Loding/LodingButton'
 import SmallSpinner from '../Loding/SmallSpinner'
@@ -39,14 +39,27 @@ export default function SignUp() {
         });
     }
 
-    const handleSubmit = (e) => {
+    console.log(process.env.REACT_APP_SERVER_DOMIN);
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
         const { firstName, email, password, confirmPassword } = data
         if (firstName && email && password && confirmPassword) {
             if (password === confirmPassword) {
+
+                const fetchData = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/signup`, {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+
+                const dataRes = await fetchData.json()
+                console.log(dataRes)
+
                 toast.success('successful', { autoClose: 500 })
-                navigate('/login')
+                // navigate('/login')
                 setLoading(false)
             } else {
                 toast.error('Password are not equal', { autoClose: 500 })
@@ -146,7 +159,7 @@ export default function SignUp() {
                     <div className="flex px-2 py-1 mt-1 mb-2 input input-bordered">
                         <input
                             type={showConfirmPassword ? "text" : "password"}
-                            id="confirmedPassword"
+                            id="confirmPassword"
                             name="confirmPassword"
                             placeholder='*****'
                             className="w-full border-none outline-none "
@@ -155,7 +168,7 @@ export default function SignUp() {
                             required
                         />
                         <span
-                            className="flex text-xl cursor-pointer"
+                            className="flex text-xl justify-center items-center cursor-pointer"
                             onClick={handleShowConfirmPassword}
                         >
                             {showConfirmPassword ? <BiShow /> : <BiHide />}
